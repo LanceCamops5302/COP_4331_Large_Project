@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router";
 
 export default function Edit() {
   const [form, setForm] = useState({
-    name: "",
-    position: "",
+    url: "",
+    rating: "",
     level: "",
     records: [],
   });
@@ -47,9 +47,8 @@ export default function Edit() {
   async function onSubmit(e) {
     e.preventDefault();
     const editedPerson = {
-      name: form.name,
-      position: form.position,
-      level: form.level,
+      url: form.url,
+      rating: form.rating,
     };
 
     // This will send a post request to update the data in the database.
@@ -75,8 +74,8 @@ export default function Edit() {
             type="text"
             className="form-control"
             id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
+            value={form.url}
+            onChange={(e) => updateForm({ url: e.target.value })}
           />
         </div>
         <div className="form-group">
@@ -85,8 +84,8 @@ export default function Edit() {
             type="text"
             className="form-control"
             id="position"
-            value={form.position}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            value={form.rating}
+            onChange={(e) => updateForm({ rating: e.target.value })}
           />
         </div>
         <div className="form-group">
@@ -140,3 +139,4 @@ export default function Edit() {
     </div>
   );
 }
+
