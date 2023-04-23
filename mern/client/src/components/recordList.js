@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import './code.css';
 
 
 const Record = (props) => {
   return (
-    <table style={{ margin: "0px", width: "100%" }} class="table">
-      <tbody>
-
+    <div className="card-body">
           {console.log(props.record)}
           {props.tableSetter(props.record, props.i)}
-      </tbody>
-    </table>
+
+    </div>
   );
 };
 
@@ -77,15 +76,8 @@ export default function RecordList() {
   {
     console.log("Setter")
     console.log(lr)
+      return (setText(props, lr))
 
-
-    if (lr == "left")
-    {
-      return (<tr> {setImg(props, lr)}{setText(props, lr)}</tr>)
-    }
-    else{
-       return (<tr> {setText(props, lr)}{setImg(props, lr)}</tr>)
-    }
   }
 
 
@@ -93,12 +85,8 @@ export default function RecordList() {
   function setImg(props, lr) {
 
     console.log("img Set");
-    return (
-      <td className={lr} >
-        <div>
-          <img src={props.imagelink} style={{ borderRadius: `3%`, objectFit: `cover`, margin: "30px" }} width="1200px" height="700px" class="park-img"></img>
-        </div>
-      </td>
+    return (null
+          
     );
   }
 
@@ -107,14 +95,19 @@ export default function RecordList() {
  
     console.log("setText")
     return (
-      <td className="park-content-container">
+      <div class= "row">
+      <div class="col-md-4">
+      <img src={props.imagelink} width="1200px" height="700px" class={"park-img-" + lr}></img>
+      </div>
+
+      <div class="col-md-8">
       <h1>{props.name}</h1>
-      <div className= "park-content">
+      
       {props.address.street}<br />
       {props.address.city}<br />
       {props.address.state}<br />
       {props.address.zipcode}
-      </div>
+
 
       <Link className="btn btn-link" to={`/edit/${props._id}`}>Clips</Link>
 
@@ -127,9 +120,10 @@ export default function RecordList() {
       Thursday: {props.hours.thursday}<br />
       Friday: {props.hours.friday}<br />
       Saturday: {props.hours.saturday}<br />
-      Sunday: { props.hours.sunday}<br />
+      Sunday: {props.hours.sunday}<br />
       </div>
-    </td>
+      </div>
+      </div>
     );
   }
 
@@ -137,7 +131,7 @@ export default function RecordList() {
   return (
     <div>
       <h2 style={{textAlign: "center", color: "white"}}>Skate Park Flexin</h2>
-      <div style={{backgroundColor: "#579390", marginTop: "50px", padding: "0px", margin: "0px", borderRadius: "50px 50px 0px 0px"}}>
+      <div style={{backgroundColor: "#D9D9D9", marginTop: "50px",}}>
       <h3></h3>
       {recordList()}
     </div>
