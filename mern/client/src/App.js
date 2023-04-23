@@ -10,6 +10,7 @@ import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./components/Login";
 import Register from "./components/Register"
+import Content from "./components/content"
 const App = () => {
   return (
     <div>
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/create" element={<Create />} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/content" element={<Content/>}/>
       </Routes>
       </div>
     </div>
