@@ -3,31 +3,41 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-
+import axios from 'axios';
 
  export default function RegisterPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-
     const handleUsernameChange = (event) => {
       console.log(username)
       setUsername(event.target.value);
     };
-  
+
     const handlePasswordChange = (event) => {
-      console.log(password)
+      console.log(password);
       setPassword(event.target.value);
     };
 
     const handleEmailChange = (event) => {
-        console.log(email)
+        console.log(email);
         setEmail(event.target.value);
       };
 
   
     const handleSubmit = (event) => {
+      axios.post(`http://localhost:5000/auth`, {
+        user_name: username,
+        pass_word: password,
+        e_mail: email
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       event.preventDefault();
       // perform login validation here
     };
@@ -49,7 +59,7 @@ import { useState } from 'react';
                 <TextField id="outlined-basic p-5" size="small" label="" variant="outlined" value={password} onChange={handlePasswordChange} />
               </div>
               <div className="button p-3">
-                <Button variant="outlined" >Register</Button>
+                <Button variant="outlined" onClick={handleSubmit} >Register</Button>
               </div>
             </div>
             <Button variant="filled" >Already have an account?</Button>

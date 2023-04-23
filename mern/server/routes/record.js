@@ -33,6 +33,17 @@ recordRoutes.post("/auth", function(request, response) {
   console.log(pass_word)
 });
 
+recordRoutes.post("/regi", function(request, response) {
+	// Capture the input fields
+	let user_name = request.body.user_name;
+	let pass_word = request.body.pass_word;
+  let e_mail = request.body.e_mail;
+	// Ensure the input fields exists and are not empty
+	console.log(user_name);
+  console.log(pass_word)
+  console.log(e_mail)
+});
+
 
 // This section will help you get a single record by id
 recordRoutes.route("/record/:id").get(function (req, res) {
