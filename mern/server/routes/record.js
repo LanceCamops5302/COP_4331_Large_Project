@@ -24,6 +24,16 @@ recordRoutes.route("/record").get(function (req, res) {
     });
 });
 
+recordRoutes.post("/auth", function(request, response) {
+	// Capture the input fields
+	let user_name = request.body.user_name;
+	let pass_word = request.body.pass_word;
+	// Ensure the input fields exists and are not empty
+	console.log(user_name)
+  console.log(pass_word)
+});
+
+
 // This section will help you get a single record by id
 recordRoutes.route("/record/:id").get(function (req, res) {
   let db_connect = dbo.getDb();

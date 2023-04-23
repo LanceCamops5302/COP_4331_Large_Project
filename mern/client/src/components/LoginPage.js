@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import axios from 'axios';
 
 
  export default function LoginPage() {
@@ -20,6 +21,17 @@ import { useState } from 'react';
     };
   
     const handleSubmit = (event) => {
+      axios.post(`http://localhost:5000/auth`, {
+        user_name: username,
+        pass_word: password
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    
       event.preventDefault();
       // perform login validation here
     };
@@ -39,7 +51,7 @@ import { useState } from 'react';
                 <TextField id="outlined-basic p-5" size="small" label="" variant="outlined" value={password} onChange={handlePasswordChange} />
               </div>
               <div className="button p-3">
-                <Button variant="outlined" >Login</Button>
+                <Button variant="outlined" onClick={handleSubmit} >Login</Button>
               </div>
             </div>
             <Button variant="filled" >Not a Member?</Button>
