@@ -1,0 +1,35 @@
+.left {
+    float: left;
+    overflow: auto;
+
+}
+
+.right {
+    float: right;
+    overflow: auto;
+}
+
+.park-img {
+    max-width:100%;
+    display:block;
+}
+
+table {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .park-content {
+    text-align: center;
+    font-size: calc(10px + 1vw);
+  }
+
+  .park-content-container {
+    justify-content: center; /* aligns items along the horizontal axis */
+    align-items: center; /* aligns items along the vertical axis */
+  }
+
+  .time-content {
+    text-align: left;
+    font-size: calc(12px + 1vw);
+  }
