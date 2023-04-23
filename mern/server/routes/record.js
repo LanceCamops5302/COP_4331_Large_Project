@@ -50,19 +50,19 @@ recordRoutes.route("/record/add").post(function (req, response) {
   });
 });
 
-// This section will help you update a record by id.
+// This will upload a clip and rating to the skatepark document
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
-    $set: {
-      name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
+    $push: { youtube_videos: {
+      url: req.body.url,
+      rating: req.body.rating,
+    }
     },
   };
   db_connect
-    .collection("records")
+    .collection("ParkInfo")
     .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
       console.log("1 document updated");
