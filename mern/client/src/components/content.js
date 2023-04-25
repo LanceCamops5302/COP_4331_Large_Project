@@ -1,7 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@mui/material'
+// import { Paper, Button } from '@mui/material'
 import { useState } from 'react';
 import axios from 'axios';
 // import { Card } from 'react-bootstrap';

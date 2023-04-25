@@ -11,10 +11,12 @@ import Create from "./components/create";
 import Login from "./components/Login";
 import Register from "./components/Register"
 import Content from "./components/content"
+import Clips from "./components/clips"
+import Nav from "./components/Nav";
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <Nav />
       <div style={{ margin: 20 }}>
       <Routes>
         <Route exact path="/" element={<RecordList />} />
@@ -23,6 +25,8 @@ const App = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/content" element={<Content/>}/>
+        <Route path="/clips" element={<Clips/>}/>
+
       </Routes>
       </div>
     </div>
