@@ -90,7 +90,25 @@ recordRoutes.route("/update/:id").post(function (req, response) {
       response.json(res);
     });
 });
-
+//Should get all the clips posted to a skatepark
+recordRoutes.route("/clips/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId( req.params.id )};
+  //let newvalues = {
+    //$push: { youtube_videos: {
+      //url: req.body.url,
+      //rating: req.body.rating,
+    //}
+    //},
+  //};
+  db_connect
+    .collection("ParkInfo")
+    .find(myquery,{$all :["youtube_videos"]})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
@@ -101,5 +119,3 @@ recordRoutes.route("/:id").delete((req, response) => {
     response.json(obj);
   });
 });
-
-module.exports = recordRoutes;
