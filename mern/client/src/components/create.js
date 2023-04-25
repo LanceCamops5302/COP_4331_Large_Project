@@ -1,115 +1,143 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
+import './code.css';
+import { useParams, useNavigate } from "react-router";
 
-export default function Create() {
-  const [form, setForm] = useState({
-    name: "",
-    position: "",
-    level: "",
-  });
+
+const Record = (props) => {
+  return (
+    <div className="card-body">
+          {console.log(props.record)}
+          {props.tableSetter(props.record, props.i)}
+
+    </div>
+  );
+};
+
+
+
+
+
+export default function RecordList() {
+  const [records, setRecords] = useState([]);
+  const params = useParams();
   const navigate = useNavigate();
+  // This method fetches the records from the database.
+  useEffect(() => {
+    async function getRecords() {
+      const id = params.id.toString();
+      const response = await fetch(`http://localhost:5000/clips/${params.id.toString()}`);
 
-  // These methods will update the state properties.
-  function updateForm(value) {
-    return setForm((prev) => {
-      return { ...prev, ...value };
+      if (!response.ok) {
+        const message = `An error occured: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const records = await response.json();
+      setRecords(records);
+    }
+
+    getRecords();
+
+    return;
+  }, [records.length]);
+
+  // This method will delete a record
+  async function deleteRecord(id) {
+    await fetch(`http://localhost:5000/${id}`, {
+      method: "DELETE"
+    });
+
+    const newRecords = records.filter((el) => el._id !== id);
+    setRecords(newRecords);
+  }
+
+  // This method will map out the records on the table
+  function recordList() {
+    return records.map((record, index) => {
+      return (
+        <Record
+          record={record}
+          key={record._id}
+          i={index % 2 === 0 ? "right" : "left"}
+          j={index % 2 === 0 ? "left" : "right"}
+          tableSetter={(record, i) => tableSetter(record, i)}
+        />
+      );
+
     });
   }
 
-  // This function will handle the submission.
-  async function onSubmit(e) {
-    e.preventDefault();
 
-    // When a post request is sent to the create url, we'll add a new record to the database.
-    const newPerson = { ...form };
 
-    await fetch("http://localhost:5000/record/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPerson),
-    })
-    .catch(error => {
-      window.alert(error);
-      return;
-    });
 
-    setForm({ name: "", position: "", level: "" });
-    navigate("/");
+
+
+  function tableSetter(props, lr)
+  {
+    console.log("Setter")
+    console.log(lr)
+      return (setText(props, lr))
+
   }
 
-  // This following section will display the form that takes the input from the user.
+
+
+  function setImg(props, lr) {
+
+    console.log("img Set");
+    return (null
+          
+    );
+  }
+
+
+  function setText(props, lr) {
+ 
+    console.log("setText")
+    return (
+      <div class= "row">
+      <div class="col-md-4">
+      <img src={props.imagelink} width="1200px" height="700px" class={"park-img-" + lr}></img>
+      </div>
+
+      <div class="col-md-8">
+      <h1>{props.url}</h1>
+      
+      {props.address.street}<br />
+      {props.address.city}<br />
+      {props.address.state}<br />
+      {props.address.zipcode}
+
+
+      <Link className="btn btn-link" to={`/edit/${props._id}`}>Clips</Link>
+
+
+      <h1 >Times</h1>
+      <div className="time-content">
+      Monday: {props.hours.monday}<br />
+      Tuesday: {props.hours.tuesday}<br />
+      Wednesday: {props.hours.wednesday}<br />
+      Thursday: {props.hours.thursday}<br />
+      Friday: {props.hours.friday}<br />
+      Saturday: {props.hours.saturday}<br />
+      Sunday: {props.hours.sunday}<br />
+      </div>
+      </div>
+      </div>
+    );
+  }
+
+  // This following section will display the table with the records of individuals.
   return (
     <div>
-      <h3>Create New Record</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="position">Position</label>
-          <input
-            type="text"
-            className="form-control"
-            id="position"
-            value={form.position}
-            onChange={(e) => updateForm({ position: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionIntern"
-              value="Intern"
-              checked={form.level === "Intern"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionJunior"
-              value="Junior"
-              checked={form.level === "Junior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionSenior"
-              value="Senior"
-              checked={form.level === "Senior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-          </div>
-        </div>
-        <div className="form-group">
-          <input
-            type="submit"
-            value="Create person"
-            className="btn btn-primary"
-          />
-        </div>
-      </form>
+      <h2 style={{textAlign: "center", color: "white"}}>Skate Park Flexin</h2>
+      <div style={{backgroundColor: "#D9D9D9", marginTop: "50px",}}>
+      <h3></h3>
+      {recordList()}
+    </div>
     </div>
   );
 }
