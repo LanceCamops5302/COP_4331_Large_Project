@@ -90,7 +90,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
       response.json(res);
     });
 });
-//Primitive function to get Clips from a skatepark
+//Should get all the clips posted to a skatepark
 recordRoutes.route("/clips/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
@@ -103,7 +103,7 @@ recordRoutes.route("/clips/:id").get(function (req, res) {
   //};
   db_connect
     .collection("ParkInfo")
-    .find(myquery,{youtube_videos:{"url":"url","rating":"fuck"}})
+    .find(myquery,{$all :["youtube_videos"]})
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -119,5 +119,3 @@ recordRoutes.route("/:id").delete((req, response) => {
     response.json(obj);
   });
 });
-
-module.exports = recordRoutes;
