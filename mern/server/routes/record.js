@@ -71,29 +71,27 @@ recordRoutes.route("/record/add").post(function (req, response) {
   });
 });
 
-// This will upload a clip and rating to the skatepark document
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  //let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
-    $push: { youtube_videos: {
+      skateparkPost : ObjectId(req.params.id),
       url: req.body.url,
       rating: req.body.rating,
-    }
-    },
-  };
+    };
+  
   db_connect
-    .collection("ParkInfo")
-    .updateOne(myquery, newvalues, function (err, res) {
+    .collection("Clips")
+    .insertOne(newvalues, function (err, res) {
       if (err) throw err;
-      console.log("1 document updated");
+      console.log("1 document uploaded");
       response.json(res);
     });
 });
 //Should get all the clips posted to a skatepark
 recordRoutes.route("/clips/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { skateparkPost: ObjectId( req.params.id )};
   //let newvalues = {
     //$push: { youtube_videos: {
       //url: req.body.url,
@@ -102,8 +100,8 @@ recordRoutes.route("/clips/:id").get(function (req, res) {
     //},
   //};
   db_connect
-    .collection("ParkInfo")
-    .find(myquery,{$all :["youtube_videos"]})
+    .collection("Clips")
+    .find(myquery)
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);
