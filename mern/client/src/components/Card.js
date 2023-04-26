@@ -2,18 +2,14 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Card(props){
+  const { name, address, imagelink, hours } = props.item;
+
     return(
-        <div className="card p-2 col-3" style={{ width: '18rem' }}>
-        <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" className="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
+      <div className="card p-3" style={{ width: '20rem', margin: 'auto' }}>
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
+        <p className="card-text">{`${address.street}, ${address.city},`}</p>
       </div>
+    </div>
     )
 }
