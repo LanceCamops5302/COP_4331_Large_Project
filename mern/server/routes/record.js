@@ -70,7 +70,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
     response.json(res);
   });
 });
-
+//This adds a url, rating , and the skatepark that saved it to the Clips collection.
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   //let myquery = { _id: ObjectId( req.params.id )};
