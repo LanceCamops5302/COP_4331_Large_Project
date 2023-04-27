@@ -29,7 +29,7 @@ export default function Clips(props) {
       getItems();
   
       return;
-    }, [items.length]);
+    }, []);
 
 
     console.log(items.length);
