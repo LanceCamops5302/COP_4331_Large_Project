@@ -57,21 +57,25 @@ export default function Content(){
               />
             </a>
           )}
-          <div className="card-body">
-            <h5 className="card-title text-primary">{name}</h5>
-            <h6 className="card-text text-dark">Address</h6>
-            <p className="card-text">{`${address.street}, ${address.city}, ${address.state} ${address.zipcode}`}</p>
-            <h6 className="card-text text-success">Hours</h6>
-            <ul>
-              <li>{hours.monday}</li>
-              <li>{hours.tuesday}</li>
-              <li>{hours.wednesday}</li>
-              <li>{hours.thursday}</li>
-              <li>{hours.friday}</li>
-              <li>{hours.saturday}</li>
-              <li>{hours.sunday}</li>
-            </ul>
-            <button className="btn btn-outline-primary">Check it Out!</button>
+          <div className="card-body" style={{ display: "flex", justifyContent: "center"}}>
+            <div style={{paddingRight: "200px"}}>
+              <h5 className="card-title text-primary">{name}</h5>
+              <h6 className="card-text text-dark">Address</h6>
+              <p className="card-text">{`${address.street}, ${address.city}, ${address.state} ${address.zipcode}`}</p>
+            </div>
+            <div style={{}}>
+              <h6 className="card-text text-success">Hours</h6>
+              <ul>
+                <li>Monday: {hours.monday}</li>
+                <li>Tuesday: {hours.tuesday}</li>
+                <li>Wednesday:{hours.wednesday}</li>
+                <li>Thursday: {hours.thursday}</li>
+                <li>Friday: {hours.friday}</li>
+                <li>Saturday: {hours.saturday}</li>
+                <li>Sunday: {hours.sunday}</li>
+              </ul>
+              <button className="btn btn-outline-primary">Check it Out!</button>
+            </div>
           </div>
         </div>
       </div>
