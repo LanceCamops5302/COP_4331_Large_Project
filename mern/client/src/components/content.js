@@ -59,10 +59,9 @@ export default function Content(){
           )}
           <div className="card-body" style={{ display: "flex", justifyContent: "center"}}>
             <div style={{paddingRight: "200px"}}>
-              <h3 className="card-title text-primary">{name}</h3>
-              <h5 className="card-text text-dark">Address</h5>
+              <h5 className="card-title text-primary">{name}</h5>
+              <h6 className="card-text text-dark">Address</h6>
               <p className="card-text">{`${address.street}, ${address.city}, ${address.state} ${address.zipcode}`}</p>
-              <button className="btn btn-outline-primary">Check it Out!</button>
             </div>
             <div style={{}}>
               <h5 className="card-text text-success">Hours</h5>
@@ -76,6 +75,9 @@ export default function Content(){
                 <li>Sunday: {hours.sunday}</li>
               </ul>
             </div>
+          </div>
+          <div className="container d-flex justify-content-center">
+          <button className="btn btn-outline-primary">Check it Out!</button>
           </div>
         </div>
       </div>
