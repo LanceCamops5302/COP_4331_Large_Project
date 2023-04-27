@@ -19,7 +19,7 @@ const App = () => {
       <Nav />
       <div style={{ margin: 20 }}>
       <Routes>
-        <Route exact path="/" element={<RecordList />} />
+        <Route exact path="/" element={<Content />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create/:id" element={<Create />} />
         <Route path="/login" element={<Login/>}/>
