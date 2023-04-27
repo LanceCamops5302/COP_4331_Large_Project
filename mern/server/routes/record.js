@@ -110,14 +110,6 @@ recordRoutes.route("/clips/:id").get(function (req, res) {
 //Get all Clips 
 recordRoutes.route("/clips").get(function (req, res) {
   let db_connect = dbo.getDb();
-  //let myquery = { skateparkPost: ObjectId( req.params.id )};
-  //let newvalues = {
-    //$push: { youtube_videos: {
-      //url: req.body.url,
-      //rating: req.body.rating,
-    //}
-    //},
-  //};
   db_connect
     .collection("Clips")
     .find({})
