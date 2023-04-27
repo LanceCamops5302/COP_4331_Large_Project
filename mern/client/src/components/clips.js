@@ -4,13 +4,12 @@ import { Typography } from '@mui/material';
 import Card from './Card'
 import axios from 'axios';
 import './VideoGrid.css';
+import ModalForm from "./ModalForm";
 
 
 export default function Clips(props) {
     const [items, setItems] = useState([]);
   
-    
-
     // This method fetches the records from the database.
     useEffect(() => {
       async function getItems() {
@@ -37,20 +36,22 @@ export default function Clips(props) {
   return (
     <div>
       <div>
-        <div className="text-center">
-          <Typography variant="h1" component="h2" >
-            Explore
+        <div className="text-center" style={{position: "relative"}}>
+          <Typography variant="h1" component="h2">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore <ModalForm />
           </Typography>
+          <div>
+          </div>
         </div>
         <div class="container">
-  <div className="video-grid">
-    {items.map((item) => (
-      <div>
-        <VideoItem item={item} className="card" />
-      </div>
-    ))}
-  </div>
-</div>
+          <div className="video-grid">
+            {items.map((item) => (
+              <div>
+                <VideoItem item={item} className="card" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -82,3 +83,4 @@ function extractVideoId(link) {
   }
   return params['v'];
 }
+
