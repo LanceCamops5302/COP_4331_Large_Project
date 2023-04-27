@@ -57,15 +57,14 @@ recordRoutes.route("/record/:id").get(function (req, res) {
       });
 });
 
-// This section will help you create a new record.
+// This section will help you create a new clip.
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    name: req.body.name,
-    position: req.body.position,
-    level: req.body.level,
+    url: req.body.url,
+    rating: req.body.rating
   };
-  db_connect.collection("records").insertOne(myobj, function (err, res) {
+  db_connect.collection("Clips").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
