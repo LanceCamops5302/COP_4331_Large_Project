@@ -15,9 +15,6 @@ const Record = (props) => {
 };
 
 
-
-
-
 export default function RecordList() {
   const [records, setRecords] = useState([]);
 
@@ -95,12 +92,12 @@ export default function RecordList() {
  
     console.log("setText")
     return (
-      <div class= "row">
-      <div class="col-md-4">
-      <img src={props.imagelink} width="1200px" height="700px" class={"park-img-" + lr}></img>
+      <div className= "row">
+      <div className="col-md-4">
+      <img src={props.imagelink} width="1200px" height="700px" className={"park-img-" + lr}></img>
       </div>
 
-      <div class="col-md-8">
+      <div className="col-md-8">
       <h1>{props.name}</h1>
       
       {props.address.street}<br />
