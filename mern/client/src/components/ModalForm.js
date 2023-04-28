@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useParams } from "react-router";
 
 function ModalForm() {
+  const params = useParams();
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     url: "",
-    rating: ""
+    rating: "",
   });
 
   const handleInputChange = (event) => {
@@ -22,7 +24,7 @@ function ModalForm() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newVideo = { ...formData};
 
-    await fetch("http://localhost:5000/record/add", {
+    await fetch(`http://localhost:5000/update/${params.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +62,7 @@ function ModalForm() {
               />
             </Form.Group>
             <Form.Group controlId="rating">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>Rating</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter a rating"
