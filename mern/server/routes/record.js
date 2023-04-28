@@ -62,7 +62,8 @@ recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     url: req.body.url,
-    rating: req.body.rating
+    rating: req.body.rating,
+    skateparkPost: ObjectId(req.params.id)
   };
   db_connect.collection("Clips").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -106,6 +107,7 @@ recordRoutes.route("/clips/:id").get(function (req, res) {
       res.json(result);
     });
 });
+
 //Get all Clips 
 recordRoutes.route("/clips").get(function (req, res) {
   let db_connect = dbo.getDb();
@@ -117,6 +119,8 @@ recordRoutes.route("/clips").get(function (req, res) {
       res.json(result);
     });
 });
+
+
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
