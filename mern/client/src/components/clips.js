@@ -5,15 +5,15 @@ import Card from './Card'
 import axios from 'axios';
 import './VideoGrid.css';
 import ModalForm from "./ModalForm";
-
+import { useParams } from "react-router";
 
 export default function Clips(props) {
     const [items, setItems] = useState([]);
-  
+    const params = useParams();
     // This method fetches the records from the database.
     useEffect(() => {
       async function getItems() {
-        const response = await fetch("http://localhost:5000/clips");
+        const response = await fetch(`http://localhost:5000/clips/${params.id.toString()}`);
   
         if (!response.ok) {
           const message = `An error occured: ${response.statusText}`;
@@ -38,15 +38,15 @@ export default function Clips(props) {
       <div>
         <div className="text-center" style={{position: "relative"}}>
           <Typography variant="h1" component="h2">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore <ModalForm />
+            &nbsp;&nbsp;&nbsp;&nbsp;Explore <ModalForm />
           </Typography>
           <div>
           </div>
         </div>
-        <div class="container">
+        <div className="container">
           <div className="video-grid">
             {items.map((item) => (
-              <div>
+              <div key={item._id}>
                 <VideoItem item={item} className="card" />
               </div>
             ))}
@@ -57,16 +57,17 @@ export default function Clips(props) {
   );
 }
 const VideoItem = (props) => {
-  const { name, url, imagelink, hours } = props.item;
+  const { rating, url, imagelink, hours } = props.item;
 
     const videoID = extractVideoId(url);
     const youtubeID = 'https://www.youtube.com/embed/' + videoID + '?enablejsapi=0&modestbranding=1'
     console.log(youtubeID);
     return(
-      <div> {name}
+      <div>
       <div className='video-wrapper'>
       <iframe className="video" src={youtubeID} title="YouTube video player" 
-        frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+        frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowFullScreen></iframe>
 
         </div>
       </div>
