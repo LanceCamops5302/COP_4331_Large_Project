@@ -34,8 +34,8 @@ export default function Content(){
       <div className="mx-auto w-75">
         <div className="text-center">
         <Typography variant="h1" component="h2">
-  Featured
-</Typography>
+          Featured
+        </Typography>
         </div>
         <div>
         <Carousel>
@@ -71,7 +71,7 @@ export default function Content(){
               <h3 className="card-title text-primary">{name}</h3>
               <h5 className="card-text text-dark">Address</h5>
               <p className="card-text">{`${address.street}, ${address.city}, ${address.state} ${address.zipcode}`}</p>
-              <Link className="btn btn-link btn-outline-primary" to={`/clips/${_id}`}>Check it Out!</Link>
+              <Link className="btn btn-link btn-outline-primary" to={`/clips/${_id}/${name}`}>Check it Out!</Link>
             </div>
             <div style={{}}>
               <h5 className="card-text text-success">Hours</h5>
