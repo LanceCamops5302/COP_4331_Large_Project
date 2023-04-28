@@ -35,10 +35,11 @@ export default function Clips(props) {
 
   return (
     <div>
+      {/* <ModalForm/> */}
       <div>
         <div className="text-center" style={{position: "relative"}}>
           <Typography variant="h1" component="h2">
-            &nbsp;&nbsp;&nbsp;&nbsp;Explore <ModalForm />
+            {params.parkName}
           </Typography>
           <div>
           </div>
@@ -48,6 +49,7 @@ export default function Clips(props) {
             {items.map((item) => (
               <div key={item._id}>
                 <VideoItem item={item} className="card" />
+                <p>{item.rating}</p>
               </div>
             ))}
           </div>
