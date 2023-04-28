@@ -39,7 +39,7 @@ export default function Clips(props) {
       <div>
         <div className="text-center" style={{position: "relative"}}>
           <Typography variant="h1" component="h2">
-            {params.parkName}
+            &nbsp;&nbsp;&nbsp;&nbsp;Featured <ModalForm />
           </Typography>
           <div>
           </div>
