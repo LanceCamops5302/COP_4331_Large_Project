@@ -49,7 +49,6 @@ export default function Clips(props) {
             {items.map((item) => (
               <div key={item._id}>
                 <VideoItem item={item} className="card" />
-                <p>{item.rating}</p>
               </div>
             ))}
           </div>
@@ -66,12 +65,12 @@ const VideoItem = (props) => {
     console.log(youtubeID);
     return(
       <div>
-      <div className='video-wrapper'>
+      <div className='video-wrapper' style={{borderRadius: "20px", overflow: "hidden"}}>
       <iframe className="video" src={youtubeID} title="YouTube video player" 
         frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" 
         allowFullScreen></iframe>
-
         </div>
+        <p style={{fontSize: "18px", fontFamily: "Arial", paddingLeft: "4px"}}>{rating}</p>
       </div>
     )
 }
