@@ -38,12 +38,17 @@ function ModalForm() {
 
     setFormData({ url: "", rating: ""});
   }
-
+  
   return (
     <>
-      <Button variant="success" onClick={() => setShowModal(true)}>
+    <a className="nav-link text-light" style={{cursor: "pointer"}} 
+      onClick={() => setShowModal(true)}>Add Clip 
+      <span className="sr-only">(current)</span></a>
+      {/* <Button variant="success" onClick={() => setShowModal(true)}
+      // style={{position: "absolute", right: "10px", top: "14px"}}
+      className="nav-link text-light col-4">
         Add a clip
-      </Button>
+      </Button> */}
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
