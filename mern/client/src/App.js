@@ -12,20 +12,21 @@ import Login from "./components/Login";
 import Register from "./components/Register"
 import Content from "./components/content"
 import Clips from "./components/clips"
+import AllClips from "./components/allClips"
 import Nav from "./components/Nav";
 const App = () => {
   return (
     <div>
       <Nav />
-      <div style={{ margin: 20 }}>
+      <div style={{ margin: 20}}>
       <Routes>
-        <Route exact path="/" element={<Content />} />
+      <Route path="/" element={<Content/>}/>
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create/:id" element={<Create />} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/content" element={<Content/>}/>
-        <Route path="/clips" element={<Clips/>}/>
+        <Route path="/clips/:id" element={<Clips/>}/>
+        <Route path="/allClips" element={<AllClips/>}/>
 
       </Routes>
       </div>
